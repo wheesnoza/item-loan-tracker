@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Core\LoanRequest\Models;
+namespace App\Core\Request\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RequestedLoanItem extends Model
+class RequestedItem extends Model
 {
     use HasFactory;
 }

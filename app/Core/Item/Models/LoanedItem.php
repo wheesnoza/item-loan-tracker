@@ -2,8 +2,9 @@
 
 namespace App\Core\Item\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class LoanedItem extends Model
+class LoanedItem extends Pivot
 {
+    protected $table = 'loaned_items';
 }

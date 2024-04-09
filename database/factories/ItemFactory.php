@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Core\Item\Enums\ItemCategory;
 use App\Core\Item\Models\Item;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -14,6 +15,7 @@ class ItemFactory extends Factory
         return [
             'name' => fake()->word(),
             'description' => fake()->text(),
+            'category' => fake()->randomElement(ItemCategory::cases()),
         ];
     }
 }
