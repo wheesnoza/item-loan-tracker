@@ -13,7 +13,7 @@ class ItemFactory extends Factory
     {
         return [
             'name' => fake()->word(),
-            'description' => fake()->text()
+            'description' => fake()->text(),
         ];
     }
 }

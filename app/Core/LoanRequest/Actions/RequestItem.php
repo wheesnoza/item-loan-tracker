@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Core\Item\Actions;
+namespace App\Core\LoanRequest\Actions;
 
-class RequestItem 
+class RequestItem
 {
     public static function execute()
     {
-        
+
     }
 }
