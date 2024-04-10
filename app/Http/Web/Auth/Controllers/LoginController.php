@@ -10,10 +10,14 @@ final class LoginController
 {
     public function __invoke(LoginRequest $request): RedirectResponse
     {
-        return AttemptLoginAction::execute($request->credentials()) ?
-            redirect()->intended(route('web.home')) :
-            back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ])->onlyInput('email');
+        $authenticated = AttemptLoginAction::execute($request->credentials());
+
+        if ($authenticated) {
+            return redirect()->intended(route('web.home'));
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 }

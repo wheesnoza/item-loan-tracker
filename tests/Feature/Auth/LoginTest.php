@@ -3,7 +3,8 @@
 use App\Core\User\Models\User;
 use Database\Factories\UserFactory;
 
-use function Pest\Laravel\{post, assertAuthenticated};
+use function Pest\Laravel\assertAuthenticated;
+use function Pest\Laravel\post;
 
 it('user can login', function () {
     /** @var User $user */
@@ -11,7 +12,7 @@ it('user can login', function () {
 
     post(route('web.login'), [
         'email' => $user->email,
-        'password' => 'password'
+        'password' => 'password',
     ]
     )->assertRedirectToRoute('web.home');
 
