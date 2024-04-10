@@ -9,6 +9,7 @@ class PerformItemsRequestAction
 {
     public static function execute(User $performer, string $reason, array $itemIds): void
     {
+        
         /** @var Request $request */
         $request = $performer->requests()->create(['reason' => $reason]);
 
