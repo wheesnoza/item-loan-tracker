@@ -10,7 +10,8 @@ final class AttemptLoginAction
     public static function execute(CredentialsData $credentials): bool
     {
         if (Auth::attempt($credentials->toArray())) {
-            return Auth::getSession()->regenerate();
+            Auth::getSession()->regenerate();
+            return true;
         }
 
         return false;
