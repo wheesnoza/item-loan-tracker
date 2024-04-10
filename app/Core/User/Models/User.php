@@ -19,6 +19,9 @@ class User extends Authenticatable
 
     protected $hidden = ['password', 'remember_token'];
 
+    /**
+     * @return array<string, mixed>
+     */
     protected function casts(): array
     {
         return [
@@ -27,11 +30,17 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * @return BelongsToMany<Item>
+     */
     public function items(): BelongsToMany
     {
         return $this->belongsToMany(Item::class, LoanedItem::class);
     }
 
+    /**
+     * @return HasMany<Request>
+     */
     public function requests(): HasMany
     {
         return $this->hasMany(Request::class);

@@ -15,6 +15,9 @@ class Request extends Model
         'reason',
     ];
 
+    /**
+     * @return BelongsToMany<Item>
+     */
     public function items(): BelongsToMany
     {
         return $this->belongsToMany(Item::class, RequestedItem::class);

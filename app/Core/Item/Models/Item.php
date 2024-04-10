@@ -21,6 +21,9 @@ class Item extends Model
         'category',
     ];
 
+    /**
+     * @return array<string, mixed>
+     */
     protected function casts(): array
     {
         return [
