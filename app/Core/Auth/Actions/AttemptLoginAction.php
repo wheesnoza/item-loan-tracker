@@ -11,6 +11,7 @@ final class AttemptLoginAction
     {
         if (Auth::attempt($credentials->toArray())) {
             Auth::getSession()->regenerate();
+
             return true;
         }
 
