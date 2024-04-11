@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Item;
 
 use App\Core\Item\Enums\ItemCategory;
 use App\Core\Item\Models\Item;

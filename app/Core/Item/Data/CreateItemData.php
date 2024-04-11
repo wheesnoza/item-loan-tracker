@@ -11,6 +11,7 @@ class CreateItemData extends Data
         public readonly string $name,
         public readonly string $description,
         public readonly ItemCategory $category,
+        public readonly int $quantity
     ) {
     }
 }
