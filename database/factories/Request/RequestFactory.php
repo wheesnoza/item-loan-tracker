@@ -1,8 +1,9 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Request;
 
 use App\Core\Request\Models\Request;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RequestFactory extends Factory
