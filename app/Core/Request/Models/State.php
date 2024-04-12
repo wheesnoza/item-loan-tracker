@@ -2,8 +2,8 @@
 
 namespace App\Core\Request\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Core\Request\Enums\RequestState;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id

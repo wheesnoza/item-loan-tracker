@@ -2,8 +2,8 @@
 
 namespace App\Core\User\Models;
 
-use App\Core\Item\Models\Item;
-use App\Core\Item\Models\LoanedItem;
+use App\Core\Item\Models\Loan;
+use App\Core\Item\Models\Stock;
 use App\Core\Request\Models\Request;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,14 +16,23 @@ use Illuminate\Notifications\Notifiable;
  * @property string $last_name
  * @property string $email
  * @property string $password
+ * @property Illuminate\Database\Eloquent\Collection<Stock> $loans
  */
 class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $fillable = ['first_name', 'last_name', 'email', 'password'];
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'email',
+        'password',
+    ];
 
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
     /**
      * @return array<string, mixed>
@@ -37,11 +46,11 @@ class User extends Authenticatable
     }
 
     /**
-     * @return BelongsToMany<Item>
+     * @return BelongsToMany<Stock>
      */
-    public function items(): BelongsToMany
+    public function loans(): BelongsToMany
     {
-        return $this->belongsToMany(Item::class, LoanedItem::class);
+        return $this->belongsToMany(Stock::class, Loan::class);
     }
 
     /**

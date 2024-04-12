@@ -3,7 +3,9 @@
 namespace App\Core\Request\Models;
 
 use App\Core\Item\Models\Item;
+use App\Core\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -19,6 +21,14 @@ class Request extends Model
     protected $fillable = [
         'reason',
     ];
+
+    /**
+     * @return BelongsTo<User, Request>
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * @return BelongsToMany<Item>

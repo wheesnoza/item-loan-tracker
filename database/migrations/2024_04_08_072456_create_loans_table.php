@@ -8,16 +8,16 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('loaned_items', function (Blueprint $table) {
+        Schema::create('loans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('item_id')->references('id')->on('items');
+            $table->foreignId('stock_id')->references('id')->on('stocks');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('loaned_items');
+        Schema::dropIfExists('loans');
     }
 };

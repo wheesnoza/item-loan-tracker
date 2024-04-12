@@ -15,6 +15,7 @@ class StateFactory extends Factory
         return [
             'request_id' => RequestFactory::new(),
             'value' => fake()->randomElement(RequestState::cases()),
+            'transition_reason' => fake()->text(),
         ];
     }
 }
