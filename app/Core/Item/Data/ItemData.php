@@ -5,7 +5,7 @@ namespace App\Core\Item\Data;
 use App\Core\Item\Enums\ItemCategory;
 use App\Core\Shared\Data\Data;
 
-class CreateItemData extends Data
+class ItemData extends Data
 {
     public function __construct(
         public readonly string $name,

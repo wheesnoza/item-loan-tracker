@@ -2,13 +2,13 @@
 
 namespace App\Core\Item\Actions;
 
-use App\Core\Item\Data\CreateItemData;
+use App\Core\Item\Data\ItemData;
 use App\Core\Item\Models\Item;
 use Illuminate\Support\Facades\DB;
 
 class CreateItemAction
 {
-    public static function execute(CreateItemData $data): Item
+    public static function execute(ItemData $data): Item
     {
         return DB::transaction(function () use ($data) {
             /** @var Item $item */
