@@ -15,12 +15,11 @@ class RequestsTableSeeder extends Seeder
         $users = User::all();
         $items = Item::all();
 
-        $users->each(fn (User $user) =>
-            RequestFactory::new()
-                ->for($user)
-                ->hasAttached($items->random(2))
-                ->has(StateFactory::new()->count(2))
-                ->create()
+        $users->each(fn (User $user) => RequestFactory::new()
+            ->for($user)
+            ->hasAttached($items->random(2))
+            ->has(StateFactory::new()->count(2))
+            ->create()
         );
     }
 }

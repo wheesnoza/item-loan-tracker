@@ -3,8 +3,10 @@
 namespace App\Core\Item\Models;
 
 use App\Core\Item\Enums\ItemCategory;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * @property int $id
@@ -13,7 +15,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property ItemCategory $category
  * @property Illuminate\Support\Carbon $created_at
  * @property Illuminate\Support\Carbon $updated_at
- * @property Stock $stock
+ * @property Collection<Stock> $stocks
+ * @property Collection<Loan> $loans
  */
 class Item extends Model
 {
@@ -29,9 +32,17 @@ class Item extends Model
     /**
      * @return HasMany<Stock>
      */
-    public function stock(): HasMany
+    public function stocks(): HasMany
     {
         return $this->hasMany(Stock::class);
+    }
+
+    /**
+     * @return HasManyThrough<Loan>
+     */
+    public function loans(): HasManyThrough
+    {
+        return $this->hasManyThrough(Loan::class, Stock::class);
     }
 
     /**

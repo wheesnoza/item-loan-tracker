@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
                 ItemsTableSeeder::class,
                 LoansTableSeeder::class,
                 RequestsTableSeeder::class,
+                NotificationsTableSeeder::class,
             ]);
         }
     }

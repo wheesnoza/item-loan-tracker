@@ -30,4 +30,12 @@ class Stock extends Model
     {
         return $this->belongsTo(Item::class);
     }
+
+    /**
+     * @return BelongsTo<Loan, Stock>
+     */
+    public function loan(): BelongsTo
+    {
+        return $this->belongsTo(Loan::class);
+    }
 }
