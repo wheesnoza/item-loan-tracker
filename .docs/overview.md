@@ -62,7 +62,7 @@ Identify the functionalities deemed necessary based on user requirements. Detail
 
 5. Delete item
 
-6. [Increase item stock quantity](./item/features/increase_item_stock_quantity.md)
+6. [Increase item stock quantity](./Item/features/increase_item_stock_quantity.md)
 
 7. Decrease item stock quantity
 
