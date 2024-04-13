@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
+ * @property int $request_id
  * @property RequestState $value
  * @property string $transition_reason
  */

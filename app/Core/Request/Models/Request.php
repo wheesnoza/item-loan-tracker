@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property int $id
+ * @property int $user_id
  * @property string $reason
  * @property State $currentState
  * @property Illuminate\Database\Eloquent\Collection<State> $states
