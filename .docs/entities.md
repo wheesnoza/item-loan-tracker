@@ -24,7 +24,7 @@ erDiagram
   User ||--o{ Request : "1 user has 0 or more requests"
   Stock ||--o| Loan : "1 stock has 0 or 1 loan"
   
-	Request }|--|{ Item : "1 or more requests has 1 or more items"
+	Request ||--|| Stock : "1 or more requests has 1 or more items"
 
   Item ||--|{ Stock : "1 item has 1 or more stocks"
   Request ||--|{ State : "1 request has 1 or more states"
@@ -50,6 +50,7 @@ erDiagram
 	Stock {
 		int id
 		int item_id
+		int request_id
 		string item_code
 	}
 	Loan {
@@ -61,11 +62,6 @@ erDiagram
 		int id
 		int user_id
 		string reason
-	}
-	RequestedItem {
-		int id
-		request_id
-		item_id
 	}
 	State {
 		int id
@@ -84,15 +80,14 @@ erDiagram
 		int notification_id
 		int user_id
 	}
-  User ||--o{ Loan : "0 or more"
-  User ||--o{ Request : "0 or more"
-  Stock ||--o| Loan : "0 or 1"
-  Request ||--|{ RequestedItem : "1 or more"
-  Item ||--|{ RequestedItem : "1 or more"
-  Item ||--|{ Stock : "1 or more"
-  Request ||--|{ State : "1 or more"
-  Notification ||--o{ SeenNotification : "0 or more"
-  User ||--o{ SeenNotification : "0 or more"
+  User ||--o{ Loan : "1 user has 0 or more loans"
+  User ||--o{ Request : "1 user has 0 or more requests"
+  Stock ||--o| Loan : "1 stock has 0 or 1 loan"
+  Request ||--|| Stock : "1 request has 1 stock"
+  Item ||--o{ Stock : "1 item has 0 or more stock"
+  Request ||--|{ State : "1 request has 1 or more states"
+  Notification ||--o{ SeenNotification : "1 notification has 0 or more seen notifications"
+  User ||--o{ SeenNotification : "1 user has 0 or more seen notifications"
 ```
 
 ## Physical Model
@@ -104,59 +99,70 @@ erDiagram
 		VARCHAR lastname
 		VARCHAR email
 		VARCHAR password
+		TIMESTAMP created_at
+		TIMESTAMP updated_at
 	}
 	Item {
 		BIGINT id PK
 		VARCHAR name
 		VARCHAR description
 		UNSIGNED_TINY_INTEGER category
+		TIMESTAMP created_at
+		TIMESTAMP updated_at
 	}
 	Stock {
 		BIGINT id PK
 		BIGINT item_id FK
+		BIGINT request_id FK
 		VARCHAR(8) item_code
+		TIMESTAMP created_at
+		TIMESTAMP updated_at
 	}
 	Loan {
 		BIGINT id PK
 		BIGINT stock_id FK
 		BIGINT user_id FK
+		TIMESTAMP created_at
+		TIMESTAMP updated_at
 	}
 	Request {
 		BIGINT id PK
 		BIGINT user_id FK
 		VARCHAR reason
-	}
-	RequestedItem {
-		BIGINT id PK
-		BIGINT request_id FK
-		BIGINT item_id FK
+		TIMESTAMP created_at
+		TIMESTAMP updated_at
 	}
 	State {
 		BIGINT id PK
 		BIGINT request_id FK
 		UNSIGNED_TINY_INTEGER value
 		VARCHAR transition_reason
+		TIMESTAMP created_at
+		TIMESTAMP updated_at
 	}
 	Notification {
 		BIGINT id
 		VARCHAR title
 		JSON content
 		UNSIGNED_TINY_INTEGER category
+		TIMESTAMP created_at
+		TIMESTAMP updated_at
 	}
 	SeenNotification {
 		BIGINT id PK
 		BIGINT notification_id FK
 		BIGINT user_id FK
+		TIMESTAMP created_at
+		TIMESTAMP updated_at
 	}
-  User ||--o{ Loan : "0 or more"
-  User ||--o{ Request : "0 or more"
-  Stock ||--o| Loan : "0 or 1"
-  Request ||--|{ RequestedItem : "1 or more"
-  Item ||--|{ RequestedItem : "1 or more"
-  Item ||--|{ Stock : "1 or more"
-  Request ||--|{ State : "1 or more"
-  Notification ||--o{ SeenNotification : "0 or more"
-  User ||--o{ SeenNotification : "0 or more"
+  User ||--o{ Loan : "user has many loans"
+  User ||--o{ Request : "user has many requests"
+  Stock ||--o| Loan : "stock belongs to loan "
+  Request ||--|| Stock : "request has one stock"
+  Item ||--o{ Stock : "item has many stock"
+  Request ||--|{ State : "request has many states"
+  Notification ||--o{ SeenNotification : "notification has many seen notifications"
+  User ||--o{ SeenNotification : "user has many seen notifications"
 ```
 
 # Database Definition

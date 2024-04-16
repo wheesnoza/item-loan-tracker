@@ -2,11 +2,10 @@
 
 namespace App\Core\Request\Models;
 
-use App\Core\Item\Models\Item;
+use App\Core\Item\Models\Stock;
 use App\Core\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -16,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $reason
  * @property State $currentState
  * @property Illuminate\Database\Eloquent\Collection<State> $states
+ * @property Stock $stock
  */
 class Request extends Model
 {
@@ -32,11 +32,11 @@ class Request extends Model
     }
 
     /**
-     * @return BelongsToMany<Item>
+     * @return HasOne<Stock>
      */
-    public function items(): BelongsToMany
+    public function stock(): HasOne
     {
-        return $this->belongsToMany(Item::class, RequestedItem::class);
+        return $this->hasOne(Stock::class);
     }
 
     /**

@@ -1,23 +1,22 @@
 <?php
 
-use App\Core\Request\Actions\RequestItemAction;
-use App\Core\Request\Data\RequestItemsData;
+use App\Core\Item\Models\Stock;
+use App\Core\Request\Actions\RequestStockAction;
+use App\Core\Request\Data\RequestStockData;
 use App\Core\Request\Models\Request;
-use App\Core\Request\Models\RequestedItem;
-use Database\Factories\Item\ItemFactory;
+use Database\Factories\Item\StockFactory;
 use Database\Factories\UserFactory;
 
-use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
 
 it('should create a request of some items.', function () {
     $user = UserFactory::new()->create();
-    $quantity = 2;
-    $items = ItemFactory::new()->count($quantity)->create();
-    $data = new RequestItemsData(fake()->text(), $items->modelKeys());
+    /** @var Stock $stock */
+    $stock = StockFactory::new()->create(['request_id' => null]);
+    $data = new RequestStockData(fake()->text(), $stock->id);
 
-    RequestItemAction::execute($user, $data);
+    $request = RequestStockAction::execute($user, $data);
 
     assertDatabaseHas(Request::class, ['reason' => $data->reason]);
-    assertDatabaseCount(RequestedItem::class, $quantity);
+    assertDatabaseHas(Stock::class, ['request_id' => $request->id]);
 });

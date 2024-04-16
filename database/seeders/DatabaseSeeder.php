@@ -12,9 +12,9 @@ class DatabaseSeeder extends Seeder
         if (App::environment(['local'])) {
             $this->call([
                 UsersTableSeeder::class,
+                RequestsTableSeeder::class,
                 ItemsTableSeeder::class,
                 LoansTableSeeder::class,
-                RequestsTableSeeder::class,
                 NotificationsTableSeeder::class,
             ]);
         }

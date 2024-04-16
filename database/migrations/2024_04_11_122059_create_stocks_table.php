@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('item_id')->references('id')->on('items');
+            $table->foreignId('request_id')->nullable()->unique()->references('id')->on('requests');
             $table->string('item_code', 8)->unique();
             $table->timestamps();
         });

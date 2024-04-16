@@ -2,6 +2,7 @@
 
 namespace App\Core\Item\Models;
 
+use App\Core\Request\Models\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -37,5 +38,13 @@ class Stock extends Model
     public function loan(): BelongsTo
     {
         return $this->belongsTo(Loan::class);
+    }
+
+    /**
+     * @return BelongsTo<Request, Stock>
+     */
+    public function request(): BelongsTo
+    {
+        return $this->belongsTo(Request::class);
     }
 }
