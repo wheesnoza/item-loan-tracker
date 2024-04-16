@@ -17,14 +17,4 @@ class ItemData extends Data
         public readonly int $quantity
     ) {
     }
-
-    public function isCreation(): bool
-    {
-        return is_null($this->id);
-    }
-
-    public function isEdition(): bool
-    {
-        return isset($this->id);
-    }
 }
