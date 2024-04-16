@@ -14,7 +14,7 @@ stateDiagram-v2
 		has_stocks --> Pending: Yes
 		Reserved --> Pending
 		Pending --> Processing: Approve request
-		Pending --> Declined: Decline request
+		Pending --> Declined: Corporate decline the request
 		Declined --> [*]
 	}
 	Cancelable --> is_remote: Employee is remote
